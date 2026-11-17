@@ -1,13 +1,17 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import session from 'express-session';
-import connectPgSimple from 'connect-pg-simple';
-import { startSessionCleanup } from './src/utils/session-cleanup.js';
+import { setupDatabase, testConnection } from './src/models/setup.js';
 
 // Import MVC components
 import routes from './src/controllers/routes.js';
 import { addLocalVariables } from './src/middleware/global.js';
+
+// Import session configuration
+import session from 'express-session';
+import connectPgSimple from 'connect-pg-simple';
+import { startSessionCleanup } from './src/utils/session-cleanup.js';
+import flash from './src/middleware/flash.js';
 
 /**
  * Server configuration
@@ -54,10 +58,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 
+// Allow Express to receive and process POST data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 /**
  * Global Middleware
  */
 app.use(addLocalVariables);
+
+// Global middleware (sets res.locals variables)
+app.use(addLocalVariables);
+
+// Flash message middleware (must come after session and global middleware)
+app.use(flash);
 
 /**
  * Routes
@@ -130,6 +144,8 @@ if (NODE_ENV.includes('dev')) {
 /**
  * Start Server
  */
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+    await setupDatabase();
+    await testConnection();
     console.log(`Server is running on http://127.0.0.1:${PORT}`);
 });
