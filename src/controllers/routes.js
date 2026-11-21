@@ -24,6 +24,12 @@ const router = Router();
 /*********************
  * Route-specific middleware
  **********************/
+// Add specific styles for homepage route
+router.use('/', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/home.css">');
+    next();
+});
+
 // Add catalog-specific styles to all catalog routes
 router.use('/catalog', (req, res, next) => {
     res.addStyle('<link rel="stylesheet" href="/css/catalog.css">');

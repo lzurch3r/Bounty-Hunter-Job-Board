@@ -25,6 +25,14 @@ body {
             &:hover {
                 color: #0066cc;
             }
+
+            
+        }
+        
+        #login-button {
+            padding: 10px;
+            background-color: green;
+            border-radius: 5px;
         }
     }
     .img-container-center {

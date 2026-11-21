@@ -1,0 +1,17 @@
+#hero-content {
+    background-image: url('/images/placeholder-16-2500x1667.jpg');
+    background-size: cover;
+    height: 600px;
+    display: grid;
+    align-content: center;
+
+    #hero-header {
+        align-self: center;
+        font-size: 32pt;
+        max-width: 500px;
+    }
+
+    #hero-input-location {
+        max-width: 200px;
+    }
+}

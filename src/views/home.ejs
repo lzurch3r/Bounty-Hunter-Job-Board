@@ -1,6 +1,12 @@
 <%- include('partials/header') %>
 <main>
     <h1><%= title %></h1>
-    <p>Welcome! Click on a link above to get started.</p>
+    <div id="hero-content">
+        <h1 id="hero-header">Start your hunt for a bounty near you</h1>
+        <form>
+            <input id="hero-input-location" name="location" type="text" placeholder="Location">
+            <button id="hero-search-button" type="submit">Search</button>
+        </form>
+    </div>
 </main>
 <%- include('partials/footer') %>

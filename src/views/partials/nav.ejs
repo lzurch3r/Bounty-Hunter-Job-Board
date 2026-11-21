@@ -1,25 +1,11 @@
 <nav>
+    <a href="/"><img src="/images/placeholder-16-2500x1667.jpg"></a>
+
     <ul>
-        <!-- Always visible links -->
-        <li><a href="/">Home</a></li>
+        <li><a href="/bounties">Bounties</a></li>
+        <li><a href="/forum">Forum</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/catalog">Course Catalog</a></li>
-        <li><a href="/faculty">Faculty Directory</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li><a href="/demo">Middleware Demo</a></li>
-
-        <!-- Only visible when logged in -->
-        <% if (isLoggedIn) { %>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/register/list">All Users</a></li>
-            <li><a href="/contact/responses">Contact Responses</a></li>
-            <li><a href="/logout">Logout</a></li>
-        <% } %>
-
-        <!-- Only visible when NOT logged in -->
-        <% if (!isLoggedIn) { %>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-        <% } %>
+        <li><a id="login-button" href="/login">Register/Login</a></li>
     </ul>
 </nav>
